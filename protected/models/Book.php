@@ -14,6 +14,7 @@
  * @property integer $signed
  * @property string $grade_id
  * @property integer $bagged
+ * @property integer $issue_number
  *
  * The followings are the available model relations:
  * @property Type $type
@@ -56,6 +57,7 @@ class Book extends CActiveRecord
 			array('title', 'length', 'max'=>256),
 			array('type_id, value, price, grade_id', 'length', 'max'=>10),
 			array('publication_date, notes', 'safe'),
+                        array('issue_number', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, title, type_id, publication_date, value, price, notes, signed, grade_id, bagged', 'safe', 'on'=>'search'),
@@ -105,6 +107,7 @@ class Book extends CActiveRecord
 			'signed' => 'Signed',
 			'grade_id' => 'Grade',
 			'bagged' => 'Bagged',
+                        'issue_number' => 'Issue Number',
 		);
 	}
 
@@ -129,6 +132,7 @@ class Book extends CActiveRecord
 		$criteria->compare('signed',$this->signed);
 		$criteria->compare('grade_id',$this->grade_id,true);
 		$criteria->compare('bagged',$this->bagged);
+                $criteria->compare('issue_number', $this->issue_number, true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

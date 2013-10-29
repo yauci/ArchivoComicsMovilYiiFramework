@@ -14,6 +14,11 @@
 		<?php echo $form->label($model,'title'); ?>
 		<?php echo $form->textField($model,'title',array('size'=>60,'maxlength'=>256)); ?>
 	</div>
+    
+       <div class="row">
+                <?php echo $form->label($model,'issue_number'); ?>
+                <?php echo $form->textField($model,'issue_number',array('size'=>20,'maxlength'=>10)); ?>
+       </div>
 
 	<div class="row">
 		<?php echo $form->label($model,'type_id'); ?>

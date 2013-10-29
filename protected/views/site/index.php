@@ -13,6 +13,7 @@
                 'id',
                 'title',
                 'type_id',
+                'issue_number',
                 'publication_date',
                 'value',
                 'price',

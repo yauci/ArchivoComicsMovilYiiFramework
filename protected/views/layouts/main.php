@@ -15,7 +15,8 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
         
         <?php Yii::app()->clientScript->registerCoreScript('jquery'); 
-              Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/detectmobilebrowser.js'); 
+              Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/detectmobilebrowser.js');
+              Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/url_param_proc.js');
         ?>
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
@@ -34,27 +35,23 @@
                 
                 Yii::app()->clientScript->registerScript('detectmobilebrowser',"
 
-if (window.location.search.search('mobile') == -1) {
+if (isMobileBrowser(navigator.userAgent||navigator.vendor 
 
- if (window.location.search.length) {
+ ||window.opera)) {
 
- window.location.replace 
+ var param_array = get_param_array();
 
- (document.URL + '&mobile=on');
+ if (!('mobile' in param_array)) {
 
- } 
+ param_array['mobile'] = 'on';
 
- else {
+ window.location.replace(get_base_uri() + 
 
- window.location.replace 
-
- (document.URL + '?mobile=on');
+ build_query_string(param_array));
 
  }
 
  }
-
-}
 
  ",CClientScript::POS_READY);
                 
